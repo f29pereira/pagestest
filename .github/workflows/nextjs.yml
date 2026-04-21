@@ -58,6 +58,8 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: npx playwright test
+        env:
+          BASE_URL: https://f29pereira.github.io/pagestest
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
