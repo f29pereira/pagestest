@@ -2,7 +2,7 @@
 #
 # To get started with Next.js see: https://nextjs.org/docs/getting-started
 #
-name: Run Jest tests and deploy Next.js site to Pages
+name: Run Jest and Playwright tests  and deploy Next.js site to Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -31,11 +31,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: lts/*
           cache: "npm"
       - name: Install dependencies
         run: npm ci
@@ -47,10 +47,10 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: lts/*
           cache: "npm"
       - name: Install dependencies
         run: npm ci
@@ -73,11 +73,11 @@ jobs:
     needs: [jest, playwright]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: lts/*
           cache: "npm"
       - name: Setup Pages
         uses: actions/configure-pages@v5
